@@ -17,6 +17,7 @@ This project reproduces and extends the benchmarking study from:
 - Provide fully reproducible Snakemake workflow
 
 ## 🏗️ Project Structure
+
 ```
 variant-calling-benchmark/
 ├── workflows/ # Snakemake workflow definitions
@@ -54,7 +55,7 @@ Member 2: Raghad Al-Ampudi - Variant calling & workflow development
 
 Member 3: Md Tariqul Islam - Benchmarking analysis & ML insights
 
-## 🗂️ File Structure with Ownership
+## 🗂️ **File Structure with Ownership**
 
 ```
 variant-calling-benchmark/
@@ -86,7 +87,9 @@ variant-calling-benchmark/
 │   ├── task_allocation.md         (All - Collaborative)
 │   └── final_report.Rmd           (Member 3 - Lead)
 └── environment.yml                (Member 2 - Owner)
+
 ```
+
 🔧 Pipeline Components
 Tools Evaluated
 Aligners: BWA-MEM, Bowtie2 (local), Novoalign
