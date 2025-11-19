@@ -39,7 +39,7 @@
 <!-- Project Status -->
 [![Status](https://img.shields.io/badge/status-active-success.svg?style=flat)]()
 [![Maintained](https://img.shields.io/badge/maintained-yes-green.svg?style=flat)]()
-[![Course](https://img.shields.io/badge/course-BINF6300-informational.svg?style=flat)]()
+[![Course](https://img.shields.io/badge/course-BINF6310-informational.svg?style=flat)]()
 
 ---
 
