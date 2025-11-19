@@ -74,13 +74,7 @@ graph TD
     class Output outStyle
 ```
 
-## Add this to your `pipeline.md` file
 
-Copy the code above and paste it directly into your markdown file. GitHub will render it automatically!
-
-### Simplified Text Version for README
-
-Alternatively, add this ASCII diagram:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
