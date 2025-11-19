@@ -1,0 +1,44 @@
+#!/usr/bin/bash
+name: variant-benchmark
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  # Core workflow
+  - snakemake>=7.0
+  - python>=3.8
+  
+  # Alignment tools
+  - bwa
+  - bowtie2
+  - novoalign
+  - samtools
+  - bedtools
+  
+  # Variant calling
+  - gatk4
+  - freebayes
+  - deepvariant
+  - bcftools
+  
+  # Benchmarking
+  - hap.py
+  - picard
+  
+  # QC and processing
+  - fastqc
+  - multiqc
+  - trimmomatic
+  
+  # Analysis and visualization
+  - r-base>=4.0
+  - r-ggplot2
+  - r-dplyr
+  - r-tidyr
+  - r-reshape2
+  - r-cowplot
+  - r-ggsci
+  - r-randomforest
+  - r-caret
+
