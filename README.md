@@ -17,6 +17,7 @@ This project reproduces and extends the benchmarking study from:
 - Provide fully reproducible Snakemake workflow
 
 ## 🏗️ Project Structure
+```
 variant-calling-benchmark/
 ├── workflows/ # Snakemake workflow definitions
 ├── scripts/ # Helper scripts for each analysis step
@@ -26,7 +27,7 @@ variant-calling-benchmark/
 ├── docs/ # Documentation
 ├── results/ # Generated results (not in version control)
 └── environment.yml # Conda environment specification
-
+```
 text
 
 ## 🚀 Quick Start
