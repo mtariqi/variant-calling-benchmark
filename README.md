@@ -54,6 +54,7 @@ Member 1: Atra Alimoradian - Data management & alignment pipelines
 Member 2: Raghad Al-Ampudi - Variant calling & workflow development
 
 Member 3: Md Tariqul Islam - Benchmarking analysis & ML insights
+```
 
 ## 🗂️ **File Structure with Ownership**
 ------------------------------------------
