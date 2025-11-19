@@ -1,4 +1,4 @@
-# Variant Calling Pipeline Workflow (Mermaid Version)
+# Variant Calling Pipeline Workflow 
 
 ```mermaid
 graph TD
