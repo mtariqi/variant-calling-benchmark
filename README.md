@@ -427,6 +427,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **⭐ Star this repo if you find it useful! ⭐**
 
-Made with ❤️ by the BINF6300 Team
+Made with ❤️ by the BINF6310 Team
 
 </div>
