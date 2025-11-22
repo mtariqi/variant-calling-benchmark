@@ -3,8 +3,8 @@
 ```mermaid
 graph TD
     subgraph Input["📥 INPUT DATA"]
-        A1[GIAB Reference Samples<br/>HG001-HG007]
-        A2[Raw WGS/WES Reads<br/> samples]
+        A1[GIAB Reference Samples<br/>HG001-HG002]
+        A2[Raw WGS/WES Reads<br/> 2 samples]
         A3[Reference Genome<br/>GRCh37/GRCh38]
         A4[GIAB Gold Standards<br/>High-confidence variants]
     end
