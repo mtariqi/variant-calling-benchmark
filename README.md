@@ -1,5 +1,3 @@
-# Variant Calling Pipeline Benchmark
-
 <!-- Workflow Management -->
 [![Snakemake](https://img.shields.io/badge/snakemake-≥7.0.0-brightgreen.svg?style=flat&logo=snakemake)](https://snakemake.readthedocs.io)
 [![Workflow](https://img.shields.io/badge/workflow-reproducible-blue.svg?style=flat)](https://snakemake.readthedocs.io)
@@ -43,7 +41,29 @@
 
 ---
 
-A reproducible benchmark analysis of state-of-the-art variant calling pipelines for coding sequence variant discovery.
+# Systematic Benchmark of Variant Calling Pipelines (HG002, GRCh38)
+
+Reproducibility project for **BINF6310 (Northeastern University)** based on:
+
+> Barbitoff, Y. A., Abasov, R., Tvorogova, V. E., Glotov, A. S., & Predeus, A. V. (2022).  
+> *Systematic benchmark of state-of-the-art variant calling pipelines identifies major factors affecting accuracy of coding sequence variant discovery.* BMC Genomics, 23(1), 155. https://doi.org/10.1186/s12864-022-08365-3
+
+Our goal is to reproduce (on a smaller scale) the WGS/WES variant-calling benchmark using **HG002** and two pipelines:
+
+- **GATK HaplotypeCaller**
+- **DeepVariant**
+
+and then compare them against **GIAB truth sets** using **hap.py**.
+
+---
+
+## 1. Project Structure (HPC)
+
+All paths are relative to:
+
+```bash
+BASE=/scratch/islam.mdtar/vbench_group/variant-calling-benchmark
+```
 
 ## 📋 Group Project Overview
 
