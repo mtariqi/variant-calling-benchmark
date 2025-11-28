@@ -184,9 +184,9 @@ snakemake --cores 4 --use-conda --config subset=chr21
 
 | Member | Role | Primary Responsibilities | GitHub |
 |--------|------|--------------------------|--------|
-| **Atra Alimoradian** | Data Management Lead | • Data acquisition & preprocessing<br>• Alignment pipeline development<br>• QC implementation | [@atra](https://github.com/) |
+| **Md Tariqul Islam** | Data Management Lead | • Data acquisition & preprocessing<br>• Alignment pipeline development<br>• QC implementation | [@atra](https://github.com/) |
 | **Raghad Al-Ampudi** | Pipeline Integration Lead | • Variant calling workflows<br>• Snakemake integration<br>• Environment management | [@raghad](https://github.com/) |
-| **Md Tariqul Islam** | Analysis & ML Lead | • Benchmarking analysis<br>• ML insights & visualization<br>• Final reporting | [@mtariqi](https://github.com/mtariqi) |
+| **Atra Alimoradian** | Analysis & ML Lead | • Benchmarking analysis<br>• ML insights & visualization<br>• Final reporting | [@mtariqi](https://github.com/mtariqi) |
 
 ---
 
