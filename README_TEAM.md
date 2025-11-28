@@ -1,7 +1,6 @@
 ```
 /scratch/islam.mdtar/vbench_group/README_TEAM.md
 ```
-# Variant Calling Pipeline Workflow (Mermaid Version)
 
 ```mermaid
 graph TD
