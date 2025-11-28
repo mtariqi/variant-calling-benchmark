@@ -123,7 +123,7 @@ samtools index HG002.sorted.bam
 
 5. **Cleanup**
 
-Temporary `.sam` and `.raw.bam` files removed.
+Temporary `.sam` files removed.
 
 ### **Outputs generated:**
 
@@ -196,3 +196,4 @@ Homo_sapiens_assembly38.fasta
 Both are ready.
 
 ---
+
