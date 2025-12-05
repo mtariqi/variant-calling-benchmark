@@ -82,6 +82,29 @@ Reads were aligned to the full GRCh38 reference genome using BWA-MEM and process
 - Enables clean benchmarking (TP, FP, FN)  
 - Small dataset footprint (<1 GB)  
 
+
+flowchart TD
+```
+    A[GRCh38 Reference] --> B[bwa index / faidx]
+    B --> C[Extract Region]
+    C --> D[Generate Normal FASTQ]
+    C --> E[Inject Known Mutations]
+    E --> F[Generate Tumor FASTQ]
+    D --> G[4 FASTQ Files]
+
+    G --> H[BWA-MEM Alignment]
+    H --> I[samtools sort & index]
+    I --> J[Sorted BAM Files]
+    J --> K[QC: flagstat]
+
+    K --> L[Merge Replicates]
+    L --> M[bcftools mpileup]
+    M --> N[bcftools call]
+    N --> O[VCF Output]
+    O --> P[Compare to Truth Set]
+    P --> Q[Precision / Recall / F1]
+```
+
 ### Future Work
 If GIAB FASTQ datasets become available via shared storage or instructor provision, the pipeline can be applied directly to HG001/HG002 datasets with minimal changes.
 
