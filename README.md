@@ -214,6 +214,44 @@ snakemake --cores 4 --use-conda --config subset=chr21
 - **R/Bioconductor** - Statistical analysis and visualization
 
 ---
+## Figure — Mutation Injection Strategy
+ASCII Diagram (simple)
+```
+Reference Genome (GRCh38)
+        |
+        |  Extract Target Region (e.g., chr20:100000-100500)
+        v
+   Synthetic Normal Reads ──> FASTQ (R1/R2)
+            |
+            |  Inject Somatic Mutations
+            v
+   Synthetic Tumor Reads ───> FASTQ (R1/R2)
+
+Mutations introduced:
+    • SNPs at known positions
+    • Small indels
+    • Allele frequency modulation
+    • Replicate variance
+```
+
+```
+Reference Genome (GRCh38)
+        |
+        |  Extract Target Region (e.g., chr20:100000-100500)
+        v
+   Synthetic Normal Reads ──> FASTQ (R1/R2)
+            |
+            |  Inject Somatic Mutations
+            v
+   Synthetic Tumor Reads ───> FASTQ (R1/R2)
+
+Mutations introduced:
+    • SNPs at known positions
+    • Small indels
+    • Allele frequency modulation
+    • Replicate variance
+```
+
 
 ## 📈 Workflow Architecture
 
