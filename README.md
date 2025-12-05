@@ -57,6 +57,36 @@ and then compare them against **GIAB truth sets** using **hap.py**.
 
 ---
 
+## Dataset Strategy: Synthetic Normal/Tumor Data
+
+### Background
+The original plan for this project was to benchmark variant calling using the Genome in a Bottle (GIAB) samples HG001 (NA12878) and HG002 (NA24385), which are considered the gold-standard datasets for evaluating variant calling pipelines.
+
+These samples provide high-confidence truth sets for SNPs and indels. However, the raw FASTQ datasets are multiple hundreds of gigabytes in size. The HPC environment used in this project restricts external downloads, bandwidth, and storage allocation.
+
+### Synthetic Dataset Approach
+To overcome these limitations while keeping the benchmarking scientifically valid, we created a synthetic dataset that includes:
+
+- 2× Normal FASTQ samples  
+- 2× Tumor FASTQ samples  
+- Known somatic mutations injected into the tumor reads  
+- Realistic Illumina-like sequencing noise  
+- 150 bp paired-end reads  
+
+Reads were aligned to the full GRCh38 reference genome using BWA-MEM and processed with samtools. The known mutations act as the ground truth for evaluating the accuracy of the variant calling pipeline.
+
+### Advantages of Synthetic Data
+- Exact control over truth variant set  
+- Full reproducibility  
+- Works within HPC constraints  
+- Enables clean benchmarking (TP, FP, FN)  
+- Small dataset footprint (<1 GB)  
+
+### Future Work
+If GIAB FASTQ datasets become available via shared storage or instructor provision, the pipeline can be applied directly to HG001/HG002 datasets with minimal changes.
+
+
+
 ## 1. Project Structure (HPC)
 
 All paths are relative to:
