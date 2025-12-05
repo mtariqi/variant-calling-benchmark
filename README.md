@@ -83,26 +83,37 @@ Reads were aligned to the full GRCh38 reference genome using BWA-MEM and process
 - Small dataset footprint (<1 GB)  
 
 
-flowchart TD
+# System Architecture Diagram 
 ```
-    A[GRCh38 Reference] --> B[bwa index / faidx]
-    B --> C[Extract Region]
-    C --> D[Generate Normal FASTQ]
-    C --> E[Inject Known Mutations]
-    E --> F[Generate Tumor FASTQ]
-    D --> G[4 FASTQ Files]
+  flowchart TD
 
-    G --> H[BWA-MEM Alignment]
-    H --> I[samtools sort & index]
-    I --> J[Sorted BAM Files]
-    J --> K[QC: flagstat]
+subgraph Synthetic Data Layer
+A[GRCh38 Reference] --> B[Extract Region for Simulation]
+B --> C[Generate Normal Reads (2 samples)]
+B --> D[Inject Somatic Mutations]
+D --> E[Generate Tumor Reads (2 samples)]
+C --> F[FASTQ Files]
+E --> F
+end
 
-    K --> L[Merge Replicates]
-    L --> M[bcftools mpileup]
-    M --> N[bcftools call]
-    N --> O[VCF Output]
-    O --> P[Compare to Truth Set]
-    P --> Q[Precision / Recall / F1]
+subgraph Processing Layer (HPC)
+F --> G[bwa mem (SLURM)]
+G --> H[samtools view]
+H --> I[samtools sort + index]
+I --> J[Sorted BAMs + QC]
+end
+
+subgraph Analysis Layer
+J --> K[Merge Replicates Normal & Tumor]
+K --> L[bcftools mpileup]
+L --> M[bcftools call]
+M --> N[VCF Output]
+N --> O[Compare to Truth VCF]
+O --> P[Precision/Recall/F1]
+end
+
+Q[Logs + Reports] --> P
+
 ```
 
 ### Future Work
@@ -139,40 +150,79 @@ This project reproduces and extends the benchmarking study from:
 
 ```
 variant-calling-benchmark/
-├── 📁 workflows/           # Snakemake workflow definitions
-│   ├── main.smk           # Main workflow coordinator
-│   ├── alignment.smk      # Alignment pipeline
-│   ├── variant_calling.smk # Variant calling pipeline
-│   ├── benchmarking.smk   # Performance evaluation
-│   └── qc.smk             # Quality control checks
-├── 📁 scripts/            # Helper scripts for each analysis step
-│   ├── download_data.sh   # Data acquisition
-│   ├── setup_project.sh   # Project initialization
-│   ├── alignment/         # Alignment utilities
-│   ├── variant_calling/   # Variant calling utilities
-│   └── benchmarking/      # Benchmarking scripts
-├── 📁 config/             # Configuration files
-│   ├── config.yaml        # Master configuration
-│   ├── alignment_config.yaml
-│   ├── calling_config.yaml
-│   └── benchmark_config.yaml
-├── 📁 data/               # Data directory (gitignored)
-│   ├── raw/               # Raw FASTQ files
-│   ├── reference/         # Reference genome
-│   └── truth/             # GIAB truth sets
-├── 📁 analysis/           # R notebooks and analysis code
-│   ├── notebooks/         # R Markdown notebooks
-│   └── plots/             # Generated figures
-├── 📁 docs/               # Documentation
-│   ├── project_plan.md
-│   ├── task_allocation.md
-│   └── final_report.Rmd
-├── 📁 results/            # Generated results (gitignored)
-│   ├── alignments/
-│   ├── variants/
-│   └── benchmarks/
-├── environment.yml        # Conda environment specification
-└── README.md             # This file
+├── README.md
+├── docs/
+│   ├── rationale_synthetic_data.pdf
+│   ├── architecture_diagram.png
+│   ├── workflow_diagram.png
+│   └── presentation_slides.pptx
+├── data/
+│   ├── reference/
+│   │   ├── GRCh38.fa
+│   │   ├── GRCh38.fa.fai
+│   │   ├── GRCh38.dict
+│   │   └── bwa_index/  (pac, bwt, ann, amb, sa)
+│   ├── fastq/
+│   │   ├── normal1_R1.fastq.gz
+│   │   ├── normal1_R2.fastq.gz
+│   │   ├── normal2_R1.fastq.gz
+│   │   ├── normal2_R2.fastq.gz
+│   │   ├── tumor1_R1.fastq.gz
+│   │   ├── tumor1_R2.fastq.gz
+│   │   ├── tumor2_R1.fastq.gz
+│   │   ├── tumor2_R2.fastq.gz
+│   └── truth/
+│       ├── truth_variants.vcf   (positions you injected)
+│       └── truth_bed.bed        (optional)
+├── bam/
+│   ├── normal1.sorted.bam
+│   ├── normal1.sorted.bam.bai
+│   ├── normal2.sorted.bam
+│   ├── normal2.sorted.bam.bai
+│   ├── tumor1.sorted.bam
+│   ├── tumor1.sorted.bam.bai
+│   ├── tumor2.sorted.bam
+│   ├── tumor2.sorted.bam.bai
+│   ├── merged_normal.bam
+│   ├── merged_tumor.bam
+│   └── flagstat/
+│       ├── normal1.flagstat
+│       ├── normal2.flagstat
+│       ├── tumor1.flagstat
+│       └── tumor2.flagstat
+├── results/
+│   ├── raw.vcf
+│   ├── raw.vcf.gz
+│   ├── raw.vcf.gz.csi
+│   ├── filtered.vcf
+│   ├── comparison/
+│   │   ├── true_positive.txt
+│   │   ├── false_positive.txt
+│   │   └── false_negative.txt
+│   └── metrics/
+│       ├── precision_recall.csv
+│       └── plots/
+│           ├── ROC.png
+│           └── PR_curve.png
+├── scripts/
+│   ├── generate_synthetic_reads.py
+│   ├── alignment.slurm
+│   ├── merge_bams.slurm
+│   ├── call_variants.slurm
+│   ├── compare_truth.ipynb
+│   └── utils/
+│       ├── generate_truth_vcf.py
+│       └── qc_summary.py
+├── env/
+│   ├── environment.yml
+│   └── requirements.txt
+└── logs/
+    ├── alignment_*.out
+    ├── alignment_*.err
+    ├── call_*.out
+    ├── call_*.err
+    └── qc_reports/
+
 ```
 
 ---
